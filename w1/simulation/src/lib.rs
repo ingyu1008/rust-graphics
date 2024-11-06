@@ -64,7 +64,7 @@ impl cellular_automata {
 
                     let idx = self.index(nx as u32, ny as u32, nz as u32);
 
-                    if self.cells[idx] >= 1 {
+                    if self.cells[idx] == 1 {
                         count += 1;
                     }
                 }
@@ -125,20 +125,20 @@ mod tests {
             (x + y * test_width + z * test_width * test_height) as usize
         };
 
-        automata.cells[index(5,5,5)] = 5;
-        automata.cells[index(5,5,6)] = 5;
-        automata.cells[index(7,5,5)] = 5;
-        automata.cells[index(7,5,6)] = 5;
+        automata.cells[index(5,5,5)] = 1;
+        automata.cells[index(5,5,6)] = 1;
+        automata.cells[index(7,5,5)] = 1;
+        automata.cells[index(7,5,6)] = 1;
 
         automata.updateState();
 
         assert_eq!(automata.cells[index(6,5,5)], 5);
         assert_eq!(automata.cells[index(6,5,6)], 5);
         assert_eq!(automata.cells[index(6,5,7)], 0);
-        assert_eq!(automata.cells[index(5,5,5)], 4);
-        assert_eq!(automata.cells[index(5,5,6)], 4);
-        assert_eq!(automata.cells[index(7,5,5)], 4);
-        assert_eq!(automata.cells[index(7,5,6)], 4);
+        assert_eq!(automata.cells[index(5,5,5)], 0);
+        assert_eq!(automata.cells[index(5,5,6)], 0);
+        assert_eq!(automata.cells[index(7,5,5)], 0);
+        assert_eq!(automata.cells[index(7,5,6)], 0);
 
     }
 }
